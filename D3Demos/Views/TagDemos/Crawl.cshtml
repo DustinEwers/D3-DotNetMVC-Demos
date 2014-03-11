@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "Crawl";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+    <div class="col-md-8">
+        <p>This demo takes tag information from <a href="http://data.stackexchange.com/stackoverflow/queries">data.stackexchange.com</a> and projects it below.</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Tag Name</th>
+                    <th># of Questions Asked</th>
+                    <th>Year Asked</th>
+                    <th>Month Asked</th>                    
+                </tr>
+            </thead>
+            <tbody id="tagTableBody">
+
+            </tbody>
+        </table>
+    </div>
+</div>
+    
+
+@Scripts.Render("~/bundles/d3")
+@section Scripts{
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.getJSON("/api/tags", function (data) {
+            buildVisualization(data);
+        });
+    });
+
+    function buildVisualization(dataSet) {
+        debugger;
+
+        d3.select("#tagTableBody")
+          .selectAll("tr")
+          .data(dataSet)
+          .enter()
+          .append("tr")
+          .html(function (dataPoint) {
+              var message = "<td>" + dataPoint.TagName + "</td>";
+              message += "<td>" + dataPoint.Rate + "</td>";
+              message += "<td>" + dataPoint.YearAsked + "</td>";
+              message += "<td>" + dataPoint.MonthAsked + "</td>";
+              return message;
+          });
+    }
+</script>    
+}
