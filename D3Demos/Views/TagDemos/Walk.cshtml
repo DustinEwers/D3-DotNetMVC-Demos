@@ -6,7 +6,17 @@
         border: 1px solid black;
     
     }
+    svg g.axis {
+        font-size: .75em;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
 
+    svg g.axis path,
+    svg g.axis line {
+        fill: none;
+        stroke: black;
+        shape-rendering: crispEdges;
+    }
 
 </style>
 
@@ -44,36 +54,66 @@
             var width = 900;
 
             // Padding...
-            var leftPadding = 0;
-            var bottomPadding = 0;
+            var leftPadding = 50;
+            var bottomPadding = 20;
             var barPadding = 1;
 
             // Actual space for the bars
             var chartWidth = width - leftPadding;
             var chartHeight = height - bottomPadding;
 
-            //Building a scale
+            //Building the scale for the heights
             var yScale = d3.scale
                            .linear()
                            .range([0, chartHeight])
                            .domain([0, dataSet.Max]);
+
+            var yAxisScale = d3.scale
+               .linear()
+               .range([chartHeight, 0])
+               .domain([0, dataSet.Max]);
+
+            //Building the scale for the bar locations
+            var xScale = d3.scale
+               .linear()
+               .range([leftPadding, width])
+               .domain([0, dataSet.Length]);
+
+            //Building a Y axis
+            var yAxis = d3.svg.axis()
+                          .scale(yAxisScale)
+                          .orient("left");
+
+            // Building an X axis
+            //var xAxis = d3.svg.axis()
+            //              .scale(xScale)
+            //              .orient("bottom");
+
             
             // Build the overall SVG container
             var svg = d3.select("#chartContainer")
                         .append("svg")
-                        .attr("width", chartWidth)
-                        .attr("height", chartHeight)
+                        .attr("width", width)
+                        .attr("height", height)
                         .attr("class", "chart");
 
+            // Adding the Axes
+            svg.append("g")
+               .attr("class", "axis")
+               .attr("transform", "translate(" + leftPadding + ",0)")
+               .call(yAxis);
+            
+            //svg.append("g")
+            //   .call(xAxis);
+            
             // Build bars for each item
             // Example "rect" element: <rect x="200" y="400" width="300" height="100" style="" class="" />
             svg.selectAll("rect")
                .data(dataSet.Items)
                .enter()
                .append("rect")
-               .attr("x", function (item, i) { return (i * chartWidth / dataSet.Length) + leftPadding  })
+               .attr("x", function (item, i) { return xScale(i)})
                .attr("width", function (item) { return chartWidth / dataSet.Length - barPadding })
-
                .attr("y", function (item, i) { return chartHeight - yScale(item.Rate) })
                .attr("height", function (item) { return yScale(item.Rate) })
                .attr("fill", "teal");

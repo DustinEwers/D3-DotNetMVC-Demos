@@ -120,12 +120,6 @@
     "YearAsked":2013
   },
   {
-    "Rate":2948,
-    "TagName":".net",
-    "MonthAsked":2,
-    "YearAsked":2014
-  },
-  {
     "Rate":934,
     "TagName":"asp.net",
     "MonthAsked":11,
@@ -276,12 +270,6 @@
     "YearAsked":2013
   },
   {
-    "Rate":17706,
-    "TagName":"c#",
-    "MonthAsked":2,
-    "YearAsked":2014
-  },
-  {
     "Rate":1065,
     "TagName":"c++",
     "MonthAsked":3,
@@ -328,12 +316,6 @@
     "TagName":"c++",
     "MonthAsked":2,
     "YearAsked":2013
-  },
-  {
-    "Rate":8307,
-    "TagName":"c++",
-    "MonthAsked":1,
-    "YearAsked":2014
   },
   {
     "Rate":951,
@@ -424,12 +406,6 @@
     "TagName":"objective-c",
     "MonthAsked":2,
     "YearAsked":2013
-  },
-  {
-    "Rate":4800,
-    "TagName":"objective-c",
-    "MonthAsked":1,
-    "YearAsked":2014
   },
   {
     "Rate":629,
@@ -640,12 +616,6 @@
     "TagName":"asp.net-mvc",
     "MonthAsked":3,
     "YearAsked":2013
-  },
-  {
-    "Rate":2536,
-    "TagName":"asp.net-mvc",
-    "MonthAsked":2,
-    "YearAsked":2014
   },
   {
     "Rate":1493,
@@ -960,12 +930,6 @@
     "YearAsked":2013
   },
   {
-    "Rate":640,
-    "TagName":"php",
-    "MonthAsked":3,
-    "YearAsked":2014
-  },
-  {
     "Rate":5855,
     "TagName":"python",
     "MonthAsked":12,
@@ -1056,12 +1020,6 @@
     "YearAsked":2013
   },
   {
-    "Rate":67,
-    "TagName":"vb.net",
-    "MonthAsked":3,
-    "YearAsked":2014
-  },
-  {
     "Rate":1563,
     "TagName":".net",
     "MonthAsked":9,
@@ -1150,12 +1108,6 @@
     "TagName":".net",
     "MonthAsked":10,
     "YearAsked":2013
-  },
-  {
-    "Rate":74,
-    "TagName":".net",
-    "MonthAsked":3,
-    "YearAsked":2014
   },
   {
     "Rate":940,
@@ -1264,12 +1216,6 @@
     "TagName":"asp.net",
     "MonthAsked":11,
     "YearAsked":2013
-  },
-  {
-    "Rate":4994,
-    "TagName":"asp.net",
-    "MonthAsked":1,
-    "YearAsked":2014
   },
   {
     "Rate":1656,
@@ -1386,12 +1332,6 @@
     "YearAsked":2013
   },
   {
-    "Rate":435,
-    "TagName":"c#",
-    "MonthAsked":3,
-    "YearAsked":2014
-  },
-  {
     "Rate":166,
     "TagName":"c++",
     "MonthAsked":8,
@@ -1492,12 +1432,6 @@
     "TagName":"c++",
     "MonthAsked":6,
     "YearAsked":2013
-  },
-  {
-    "Rate":8686,
-    "TagName":"c++",
-    "MonthAsked":2,
-    "YearAsked":2014
   },
   {
     "Rate":1236,
@@ -1620,12 +1554,6 @@
     "YearAsked":2013
   },
   {
-    "Rate":5179,
-    "TagName":"objective-c",
-    "MonthAsked":2,
-    "YearAsked":2014
-  },
-  {
     "Rate":5540,
     "TagName":"php",
     "MonthAsked":12,
@@ -1720,12 +1648,6 @@
     "TagName":"ruby",
     "MonthAsked":2,
     "YearAsked":2013
-  },
-  {
-    "Rate":3004,
-    "TagName":"ruby",
-    "MonthAsked":1,
-    "YearAsked":2014
   },
   {
     "Rate":2011,
@@ -1980,12 +1902,6 @@
     "YearAsked":2013
   },
   {
-    "Rate":17092,
-    "TagName":"c#",
-    "MonthAsked":1,
-    "YearAsked":2014
-  },
-  {
     "Rate":784,
     "TagName":"c++",
     "MonthAsked":9,
@@ -2086,12 +2002,6 @@
     "TagName":"c++",
     "MonthAsked":7,
     "YearAsked":2013
-  },
-  {
-    "Rate":288,
-    "TagName":"c++",
-    "MonthAsked":3,
-    "YearAsked":2014
   },
   {
     "Rate":5812,
@@ -2226,12 +2136,6 @@
     "YearAsked":2013
   },
   {
-    "Rate":20158,
-    "TagName":"php",
-    "MonthAsked":2,
-    "YearAsked":2014
-  },
-  {
     "Rate":3686,
     "TagName":"python",
     "MonthAsked":12,
@@ -2362,12 +2266,6 @@
     "TagName":"vb.net",
     "MonthAsked":8,
     "YearAsked":2013
-  },
-  {
-    "Rate":2074,
-    "TagName":"vb.net",
-    "MonthAsked":1,
-    "YearAsked":2014
   },
   {
     "Rate":1527,
@@ -2502,12 +2400,6 @@
     "YearAsked":2013
   },
   {
-    "Rate":53,
-    "TagName":"asp.net-mvc",
-    "MonthAsked":3,
-    "YearAsked":2014
-  },
-  {
     "Rate":90,
     "TagName":"c",
     "MonthAsked":8,
@@ -2608,12 +2500,6 @@
     "TagName":"c",
     "MonthAsked":6,
     "YearAsked":2013
-  },
-  {
-    "Rate":4430,
-    "TagName":"c",
-    "MonthAsked":2,
-    "YearAsked":2014
   },
   {
     "Rate":9510,
@@ -2782,12 +2668,6 @@
     "TagName":"java",
     "MonthAsked":10,
     "YearAsked":2013
-  },
-  {
-    "Rate":645,
-    "TagName":"java",
-    "MonthAsked":3,
-    "YearAsked":2014
   },
   {
     "Rate":2308,
@@ -2968,12 +2848,6 @@
     "TagName":"python",
     "MonthAsked":8,
     "YearAsked":2013
-  },
-  {
-    "Rate":10658,
-    "TagName":"python",
-    "MonthAsked":1,
-    "YearAsked":2014
   },
   {
     "Rate":256,
@@ -3222,12 +3096,6 @@
     "YearAsked":2013
   },
   {
-    "Rate":2545,
-    "TagName":"asp.net-mvc",
-    "MonthAsked":1,
-    "YearAsked":2014
-  },
-  {
     "Rate":343,
     "TagName":"c",
     "MonthAsked":9,
@@ -3328,12 +3196,6 @@
     "TagName":"c",
     "MonthAsked":7,
     "YearAsked":2013
-  },
-  {
-    "Rate":175,
-    "TagName":"c",
-    "MonthAsked":3,
-    "YearAsked":2014
   },
   {
     "Rate":4463,
@@ -3522,12 +3384,6 @@
     "YearAsked":2013
   },
   {
-    "Rate":633,
-    "TagName":"javascript",
-    "MonthAsked":3,
-    "YearAsked":2014
-  },
-  {
     "Rate":917,
     "TagName":"php",
     "MonthAsked":3,
@@ -3574,12 +3430,6 @@
     "TagName":"php",
     "MonthAsked":2,
     "YearAsked":2013
-  },
-  {
-    "Rate":19320,
-    "TagName":"php",
-    "MonthAsked":1,
-    "YearAsked":2014
   },
   {
     "Rate":462,
@@ -3780,12 +3630,6 @@
     "YearAsked":2013
   },
   {
-    "Rate":2170,
-    "TagName":"vb.net",
-    "MonthAsked":2,
-    "YearAsked":2014
-  },
-  {
     "Rate":1632,
     "TagName":".net",
     "MonthAsked":2,
@@ -3942,12 +3786,6 @@
     "YearAsked":2013
   },
   {
-    "Rate":111,
-    "TagName":"asp.net",
-    "MonthAsked":3,
-    "YearAsked":2014
-  },
-  {
     "Rate":279,
     "TagName":"asp.net-mvc",
     "MonthAsked":11,
@@ -4074,12 +3912,6 @@
     "YearAsked":2013
   },
   {
-    "Rate":20824,
-    "TagName":"java",
-    "MonthAsked":1,
-    "YearAsked":2014
-  },
-  {
     "Rate":164,
     "TagName":"javascript",
     "MonthAsked":8,
@@ -4198,12 +4030,6 @@
     "TagName":"javascript",
     "MonthAsked":9,
     "YearAsked":2013
-  },
-  {
-    "Rate":24668,
-    "TagName":"javascript",
-    "MonthAsked":2,
-    "YearAsked":2014
   },
   {
     "Rate":53,
@@ -4326,12 +4152,6 @@
     "YearAsked":2013
   },
   {
-    "Rate":137,
-    "TagName":"objective-c",
-    "MonthAsked":3,
-    "YearAsked":2014
-  },
-  {
     "Rate":132,
     "TagName":"python",
     "MonthAsked":8,
@@ -4396,12 +4216,6 @@
     "TagName":"python",
     "MonthAsked":3,
     "YearAsked":2013
-  },
-  {
-    "Rate":11147,
-    "TagName":"python",
-    "MonthAsked":2,
-    "YearAsked":2014
   },
   {
     "Rate":77,
@@ -4506,12 +4320,6 @@
     "YearAsked":2013
   },
   {
-    "Rate":2932,
-    "TagName":"ruby",
-    "MonthAsked":2,
-    "YearAsked":2014
-  },
-  {
     "Rate":1,
     "TagName":".net",
     "MonthAsked":7,
@@ -4602,12 +4410,6 @@
     "YearAsked":2013
   },
   {
-    "Rate":3060,
-    "TagName":".net",
-    "MonthAsked":1,
-    "YearAsked":2014
-  },
-  {
     "Rate":259,
     "TagName":"asp.net",
     "MonthAsked":8,
@@ -4674,12 +4476,6 @@
     "YearAsked":2013
   },
   {
-    "Rate":5142,
-    "TagName":"asp.net",
-    "MonthAsked":2,
-    "YearAsked":2014
-  },
-  {
     "Rate":964,
     "TagName":"asp.net-mvc",
     "MonthAsked":12,
@@ -4744,12 +4540,6 @@
     "TagName":"c",
     "MonthAsked":2,
     "YearAsked":2013
-  },
-  {
-    "Rate":3987,
-    "TagName":"c",
-    "MonthAsked":1,
-    "YearAsked":2014
   },
   {
     "Rate":3178,
@@ -4884,12 +4674,6 @@
     "YearAsked":2013
   },
   {
-    "Rate":22784,
-    "TagName":"java",
-    "MonthAsked":2,
-    "YearAsked":2014
-  },
-  {
     "Rate":721,
     "TagName":"javascript",
     "MonthAsked":10,
@@ -4972,12 +4756,6 @@
     "TagName":"javascript",
     "MonthAsked":5,
     "YearAsked":2013
-  },
-  {
-    "Rate":23567,
-    "TagName":"javascript",
-    "MonthAsked":1,
-    "YearAsked":2014
   },
   {
     "Rate":94,
@@ -5172,12 +4950,6 @@
     "YearAsked":2013
   },
   {
-    "Rate":342,
-    "TagName":"python",
-    "MonthAsked":3,
-    "YearAsked":2014
-  },
-  {
     "Rate":296,
     "TagName":"ruby",
     "MonthAsked":9,
@@ -5296,12 +5068,6 @@
     "TagName":"ruby",
     "MonthAsked":10,
     "YearAsked":2013
-  },
-  {
-    "Rate":72,
-    "TagName":"ruby",
-    "MonthAsked":3,
-    "YearAsked":2014
   },
   {
     "Rate":1154,
