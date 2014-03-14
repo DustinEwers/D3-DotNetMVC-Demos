@@ -29,9 +29,20 @@ namespace D3Demos.Controllers
 
         [HttpGet]
         [Route("{tag}")]
-        public List<TagDataPoint> GetByTag(string tag)
+        public DataSetResponse<TagDataPoint> GetByTag(string tag)
         {
-            return dataPoints.Where(m=>m.TagName == tag).ToList();
+            var items = dataPoints.Where(m=>m.TagName == tag)
+                                  .OrderBy(m => String.Format("{0}-{1}", m.YearAsked, m.MonthAsked.ToString("00")))
+                                  .ToList();
+            var response = new DataSetResponse<TagDataPoint>()
+            {
+                Min = items.Min(t => t.Rate), // we could do this in javaScript with d3.min
+                Max = items.Max(t => t.Rate), // we could do this in javaScript with d3.max
+                Length = items.Count(),
+                Items = items
+            };
+
+            return response;
         }
 
         private List<TagDataPoint> GetSOData() {

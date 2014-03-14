@@ -8,7 +8,8 @@ namespace D3Demos.Controllers
 {
     public class TagDemosController : Controller
     {
-        public ActionResult Crawl() {
+        public ActionResult Crawl() 
+        {
             return View();
         }
 

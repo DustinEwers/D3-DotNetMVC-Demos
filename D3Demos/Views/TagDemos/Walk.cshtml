@@ -1,7 +1,82 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Walk";
 }
+<style type="text/css">
+    svg.chart {
+        border: 1px solid black;
+    
+    }
+
+
+</style>
+
 
 <h2>Walk</h2>
 
+<div class="row">
+    <div class="col-md-8">
+        <p>This demo takes tag information from <a href="http://data.stackexchange.com/stackoverflow/queries">data.stackexchange.com</a> and projects it below.</p>
+    </div>
+</div>
+<div id="chartContainer">
+</div>
+
+
+@Scripts.Render("~/bundles/d3")
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var url = "/api/tags/";
+            url += encodeURIComponent("c#");
+
+            $.getJSON(url, function (data) {
+                buildVisualization(data);
+            });
+        });
+
+        function buildVisualization(dataSet) {
+            debugger;
+
+            var prettyColors = ['teal', 'aqua', 'blue', 'navy' ];
+
+            // Overall dimensions of the SVG
+            var height = 500;
+            var width = 900;
+
+            // Padding...
+            var leftPadding = 0;
+            var bottomPadding = 0;
+            var barPadding = 1;
+
+            // Actual space for the bars
+            var chartWidth = width - leftPadding;
+            var chartHeight = height - bottomPadding;
+
+            //Building a scale
+            var yScale = d3.scale
+                           .linear()
+                           .range([0, chartHeight])
+                           .domain([0, dataSet.Max]);
+            
+            // Build the overall SVG container
+            var svg = d3.select("#chartContainer")
+                        .append("svg")
+                        .attr("width", chartWidth)
+                        .attr("height", chartHeight)
+                        .attr("class", "chart");
+
+            // Build bars for each item
+            // Example "rect" element: <rect x="200" y="400" width="300" height="100" style="" class="" />
+            svg.selectAll("rect")
+               .data(dataSet.Items)
+               .enter()
+               .append("rect")
+               .attr("x", function (item, i) { return (i * chartWidth / dataSet.Length) + leftPadding  })
+               .attr("width", function (item) { return chartWidth / dataSet.Length - barPadding })
+
+               .attr("y", function (item, i) { return chartHeight - yScale(item.Rate) })
+               .attr("height", function (item) { return yScale(item.Rate) })
+               .attr("fill", "teal");
+        }
+    </script>
+}

@@ -140,6 +140,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DataSetResponse.cs" />
     <Compile Include="Models\GHDataPoint.cs" />
     <Compile Include="Models\TagDataPoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
