@@ -85,9 +85,9 @@
                           .orient("left");
 
             // Building an X axis
-            //var xAxis = d3.svg.axis()
-            //              .scale(xScale)
-            //              .orient("bottom");
+            var xAxis = d3.svg.axis()
+                          .scale(xScale)
+                          .orient("bottom");
 
             
             // Build the overall SVG container
@@ -103,8 +103,10 @@
                .attr("transform", "translate(" + leftPadding + ",0)")
                .call(yAxis);
             
-            //svg.append("g")
-            //   .call(xAxis);
+            svg.append("g")
+               .attr("class", "axis")
+               .attr("transform", "translate(0," + chartHeight + ")")
+               .call(xAxis);
             
             // Build bars for each item
             // Example "rect" element: <rect x="200" y="400" width="300" height="100" style="" class="" />
