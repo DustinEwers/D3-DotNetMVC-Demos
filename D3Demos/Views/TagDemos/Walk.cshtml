@@ -30,7 +30,10 @@
 </div>
 <div id="chartContainer">
 </div>
-
+<div class="row">
+    <div id="chartContainer">
+    </div>
+</div>
 
 @Scripts.Render("~/bundles/d3")
 @section Scripts{
@@ -45,10 +48,6 @@
         });
 
         function buildVisualization(dataSet) {
-            debugger;
-
-            var prettyColors = ['teal', 'aqua', 'blue', 'navy' ];
-
             // Overall dimensions of the SVG
             var height = 500;
             var width = 900;
@@ -56,7 +55,6 @@
             // Padding...
             var leftPadding = 50;
             var bottomPadding = 20;
-            var barPadding = 1;
 
             // Actual space for the bars
             var chartWidth = width - leftPadding;
@@ -75,21 +73,15 @@
 
             //Building the scale for the bar locations
             var xScale = d3.scale
-               .linear()
-               .range([leftPadding, width])
-               .domain([0, dataSet.Length]);
+               .ordinal()
+               .domain(d3.range(dataSet.Length))
+               .rangeRoundBands([leftPadding, chartWidth], 0.05);
 
             //Building a Y axis
             var yAxis = d3.svg.axis()
                           .scale(yAxisScale)
                           .orient("left");
 
-            // Building an X axis
-            var xAxis = d3.svg.axis()
-                          .scale(xScale)
-                          .orient("bottom");
-
-            
             // Build the overall SVG container
             var svg = d3.select("#chartContainer")
                         .append("svg")
@@ -102,12 +94,7 @@
                .attr("class", "axis")
                .attr("transform", "translate(" + leftPadding + ",0)")
                .call(yAxis);
-            
-            svg.append("g")
-               .attr("class", "axis")
-               .attr("transform", "translate(0," + chartHeight + ")")
-               .call(xAxis);
-            
+           
             // Build bars for each item
             // Example "rect" element: <rect x="200" y="400" width="300" height="100" style="" class="" />
             svg.selectAll("rect")
@@ -115,7 +102,7 @@
                .enter()
                .append("rect")
                .attr("x", function (item, i) { return xScale(i)})
-               .attr("width", function (item) { return chartWidth / dataSet.Length - barPadding })
+               .attr("width", function (item) { return xScale.rangeBand() })
                .attr("y", function (item, i) { return chartHeight - yScale(item.Rate) })
                .attr("height", function (item) { return yScale(item.Rate) })
                .attr("fill", "teal");
