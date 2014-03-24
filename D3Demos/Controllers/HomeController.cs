@@ -10,8 +10,11 @@ namespace D3Demos.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
+            return View();
+        }
 
+        public ActionResult ScalesAndAxes() 
+        {
             return View();
         }
     }
