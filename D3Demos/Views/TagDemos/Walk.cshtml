@@ -11,6 +11,11 @@
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     }
 
+    svg g.axis text.label {
+        font-size: 2em;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
     svg g.axis path,
     svg g.axis line {
         fill: none;
@@ -53,7 +58,7 @@
             var width = 900;
 
             // Padding...
-            var leftPadding = 50;
+            var leftPadding = 75;
             var bottomPadding = 20;
 
             // Actual space for the bars
@@ -93,7 +98,15 @@
             svg.append("g")
                .attr("class", "axis")
                .attr("transform", "translate(" + leftPadding + ",0)")
-               .call(yAxis);
+               .call(yAxis)
+              .append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("y", 6)
+                .attr("dy", "-55px")
+                .attr("dx", "-140px")
+                .attr("class", "label")
+                .style("text-anchor", "end")
+                .text("Questions Asked");
            
             // Build bars for each item
             // Example "rect" element: <rect x="200" y="400" width="300" height="100" style="" class="" />
