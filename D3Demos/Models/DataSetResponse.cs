@@ -9,6 +9,8 @@ namespace D3Demos.Models
     {
         public int Min { get; set; }
         public int Max { get; set; }
+        public DateTime MinDate { get; set; }
+        public DateTime MaxDate { get; set; }
         public int Length { get; set; }
         public List<T> Items { get; set; }        
     }

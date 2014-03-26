@@ -7,6 +7,11 @@
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     }
 
+    svg g.axis text.label {
+        font-size: 1.75em;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
     svg g.axis path,
     svg g.axis line {
         fill: none;
@@ -41,7 +46,6 @@
             var height = 500;
             var width = 900;
 
-            
             // Linear Scale
             var linearScale = d3.scale
                            .linear()
@@ -75,7 +79,8 @@
             // Time Axis
             var timeAxis = d3.svg.axis()
                             .scale(timeScale)
-                            .orient("left");
+                            .orient("left")
+                            .tickFormat(d3.time.format("%m/%d/%Y"));
 
             // Build the overall SVG container
             var svg = d3.select("#chartContainer")
@@ -87,17 +92,42 @@
             svg.append("g")
                .attr("class", "axis")
                .attr("transform", "translate(50,5)")
-               .call(linearAxis);
+               .call(linearAxis)
+                .append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("y", 6)
+                .attr("dy", "-30px")
+                .attr("dx", "-140px")
+                .attr("class", "label")
+                .style("text-anchor", "end")
+                .text("Linear Axis");
 
             svg.append("g")
                .attr("class", "axis")
                .attr("transform", "translate(150,5)")
-               .call(powAxis);
+               .call(powAxis)
+               .append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("y", 6)
+                .attr("dy", "-30px")
+                .attr("dx", "-140px")
+                .attr("class", "label")
+                .style("text-anchor", "end")
+                .text("Power Axis");
+
 
             svg.append("g")
                .attr("class", "axis")
-               .attr("transform", "translate(250,5)")
-               .call(timeAxis);
+               .attr("transform", "translate(275,5)")
+               .call(timeAxis)
+               .append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("y", 6)
+                .attr("dy", "-75px")
+                .attr("dx", "-140px")
+                .attr("class", "label")
+                .style("text-anchor", "end")
+                .text("Time Axis");
         })();
     </script>
 }

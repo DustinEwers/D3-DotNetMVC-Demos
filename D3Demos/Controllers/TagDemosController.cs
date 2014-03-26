@@ -8,12 +8,12 @@ namespace D3Demos.Controllers
 {
     public class TagDemosController : Controller
     {
-        public ActionResult Crawl() 
+        public ActionResult DataLoading() 
         {
             return View();
         }
 
-        public ActionResult Walk()
+        public ActionResult BasicBarChart()
         {
             return View();
         }

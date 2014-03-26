@@ -11,5 +11,14 @@ namespace D3Demos.Models
         public int Rate { get; set; }
         public int MonthAsked { get; set; }
         public int YearAsked { get; set; }
+
+        public DateTime DateAsked
+        {
+            get
+            {
+                return new DateTime(YearAsked, MonthAsked, 1);
+            }
+            set { }
+        }
     }
 }

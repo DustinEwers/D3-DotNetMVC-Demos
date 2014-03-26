@@ -1,11 +1,7 @@
 ﻿@{
-    ViewBag.Title = "Walk";
+    ViewBag.Title = "Basic Bar Chart";
 }
 <style type="text/css">
-    svg.chart {
-        border: 1px solid black;
-    
-    }
     svg g.axis {
         font-size: .75em;
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -26,7 +22,7 @@
 </style>
 
 
-<h2>Walk</h2>
+<h2>@ViewBag.Title</h2>
 
 <div class="row">
     <div class="col-md-8">
@@ -59,7 +55,7 @@
 
             // Padding...
             var leftPadding = 75;
-            var bottomPadding = 20;
+            var bottomPadding = 50;
 
             // Actual space for the bars
             var chartWidth = width - leftPadding;
@@ -77,15 +73,20 @@
                .domain([0, dataSet.Max]);
 
             //Building the scale for the bar locations
-            var xScale = d3.scale
-               .ordinal()
-               .domain(d3.range(dataSet.Length))
-               .rangeRoundBands([leftPadding, chartWidth], 0.05);
+            var xScale = d3.time.scale()
+               .domain([new Date(dataSet.MinDate), new Date(dataSet.MaxDate)])
+               .range([leftPadding, width-10]);
 
             //Building a Y axis
             var yAxis = d3.svg.axis()
                           .scale(yAxisScale)
                           .orient("left");
+
+            // Building an X Axis
+            var xAxis = d3.svg.axis()
+                            .scale(xScale)
+                            .orient("bottom")
+                            .tickFormat(d3.time.format("%m/%d/%Y"));
 
             // Build the overall SVG container
             var svg = d3.select("#chartContainer")
@@ -101,21 +102,37 @@
                .call(yAxis)
               .append("text")
                 .attr("transform", "rotate(-90)")
-                .attr("y", 6)
+                .attr("y", 0)
                 .attr("dy", "-55px")
-                .attr("dx", "-140px")
+                .attr("dx", "-120px")
                 .attr("class", "label")
                 .style("text-anchor", "end")
-                .text("Questions Asked");
+                .text("Number of Questions Asked");
+
+
+            svg.append("g")
+               .attr("class", "axis")
+               .attr("transform", "translate(0," + chartHeight + ")")
+               .call(xAxis)
+               .append("text")
+                .attr("x", 0)
+                .attr("y", 0)
+                .attr("dy", "40px")
+                .attr("dx", "475px")
+                .attr("class", "label")
+                .style("text-anchor", "end")
+                .text("Month Asked");
            
+            var barWidth = (chartWidth / dataSet.Items.length - 1) - 1;
+
             // Build bars for each item
             // Example "rect" element: <rect x="200" y="400" width="300" height="100" style="" class="" />
             svg.selectAll("rect")
                .data(dataSet.Items)
                .enter()
                .append("rect")
-               .attr("x", function (item, i) { return xScale(i)})
-               .attr("width", function (item) { return xScale.rangeBand() })
+               .attr("x", function (item, i) { return xScale(new Date(item.DateAsked)) })
+               .attr("width", function (item) { return barWidth })
                .attr("y", function (item, i) { return chartHeight - yScale(item.Rate) })
                .attr("height", function (item) { return yScale(item.Rate) })
                .attr("fill", "teal");
