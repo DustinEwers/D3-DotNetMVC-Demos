@@ -1,0 +1,159 @@
+﻿@{
+    ViewBag.Title = "Updating Data";
+}
+<style type="text/css">
+    svg g.axis {
+        font-size: .75em;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+        svg g.axis text.label {
+            font-size: 1.75em;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+
+        svg g.axis path,
+        svg g.axis line {
+            fill: none;
+            stroke: black;
+            shape-rendering: crispEdges;
+        }
+</style>
+
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+    <div class="col-md-8">
+        <p>This demo shows you how to update data.</p>
+    </div>
+</div>
+<div class="row">
+    <form role="form">
+        <input id="dataIndex" type="hidden" />
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="radius">Radius &mdash; <span id="radiusValue"></span></label>
+                <input id="radius" type="range" class="form-control" min="5" max="50" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="height">Height &mdash; <span id="heightValue"></span></label>
+                <input id="height" type="range" class="form-control" min="10" max="300" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-12">
+                <button type="submit" class="btn btn-default">Submit</button>
+            </div>
+        </div>
+</form>
+</div>
+<div class="row">
+    <div id="chartContainer">
+    </div>
+</div>
+
+@Scripts.Render("~/bundles/d3")
+@section Scripts{
+    <script type="text/javascript">
+        var dataSet = [];
+        var height = 300;
+        var width = 900;
+        var index = 0;
+
+        // Build the overall SVG container
+        var svg = d3.select("#chartContainer")
+                    .append("svg")
+                    .attr("width", width)
+                    .attr("height", height);
+
+        
+        $(document).ready(function () {
+            $("#radius").on("change", function () {
+                $("#radiusValue").text($(this).val());
+            });
+
+            $("#height").on("change", function () {
+                $("#heightValue").text($(this).val());
+            });
+
+            $("#radius").change();
+            $("#height").change();
+
+            $("form").on("submit", function () {
+                index++;
+
+                var item = {
+                    Radius: $("#radius").val(), 
+                    Height: $("#height").val(),
+                    Index: index
+                }
+
+                dataSet.push(item);
+                if (dataSet.length > 20) {
+                    dataSet.shift();
+                    //dataSet.splice(0, 5);
+                }
+
+                BindData();
+
+                return false;
+            });
+        });
+
+
+        function BindData() {
+            var xScale = d3.scale
+                           .ordinal()
+                           .domain(d3.range(dataSet.length))
+                           .rangeBands([25, width - 25], 0.1);
+
+            var prettyColors = [
+                '#FFC757',
+                '#D1E84F',
+                '#63FF9C',
+                '#4FACE8',
+                '#C099FF',
+                '#BEFF17',
+                '#24E815',
+                '#24FF8A',
+                '#0EE8E7',
+                '#59AEFF'];
+
+
+            debugger;
+
+            var selection = svg.selectAll("circle")
+                               .data(dataSet, function (item) { return item.Index });
+
+            selection
+               .exit()
+               .transition()
+               .attr("cx", function (item, i) { return width })
+               .attr("cy", function (item, i) { return height })
+               .attr("r", function (item) { return 0 })
+               .attr("fill", function (item) { return "#000000" })
+               .duration(500)
+               .remove();
+
+            selection
+               .enter()
+               .append("circle")
+               .attr("cx", function (item, i) { return width })
+               .attr("cy", function (item, i) { return height - item.Height })
+               .attr("r", function (item) { return item.Radius })
+               .on("click", function (item) { alert(item.Index + " ");})
+               ;
+
+            selection
+               .transition()
+               .duration(500)
+               .attr("cx", function (item, i) { return xScale(i) })
+               .attr("cy", function (item, i) { return height - item.Height })
+               .attr("r", function (item) { return item.Radius })
+               .attr("fill", function (item, i) { return prettyColors[item.Index % (prettyColors.length-1)] });
+        }
+    </script>
+}

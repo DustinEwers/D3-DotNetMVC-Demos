@@ -17,5 +17,10 @@ namespace D3Demos.Controllers
         {
             return View();
         }
+
+        public ActionResult UpdatingData() 
+        {
+            return View();
+        }
     }
 }
