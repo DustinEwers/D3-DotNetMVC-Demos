@@ -28,7 +28,7 @@ namespace D3Demos.Controllers
         }
 
         [HttpGet]
-        [Route("{tag}")]
+        [Route("")]
         public DataSetResponse<TagDataPoint> GetByTag(string tag)
         {
             var items = dataPoints.Where(m=>m.TagName == tag)

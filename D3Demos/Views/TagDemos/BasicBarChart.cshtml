@@ -1,5 +1,18 @@
 ﻿@{
-    ViewBag.Title = "Basic Bar Chart";
+    ViewBag.Title = "Bar Chart";
+    var choices = new List<SelectListItem>(){
+        new SelectListItem(){Text= "C#", Value="c#", Selected=true },
+        new SelectListItem(){Text= ".Net", Value=".net" },
+        new SelectListItem(){Text= "ASP.Net", Value="asp.net" },
+        new SelectListItem(){Text= "ASP.Net MVC", Value="asp.net-mvc" },
+        new SelectListItem(){Text= "C", Value="c" },
+        new SelectListItem(){Text= "C++", Value="c++" },
+        new SelectListItem(){Text= "JavaScript", Value="javascript" },
+        new SelectListItem(){Text= "Objective C", Value="objective-c" },
+        new SelectListItem(){Text= "PHP", Value="php" },
+        new SelectListItem(){Text= "Ruby", Value="ruby" },
+        new SelectListItem(){Text= "Python", Value="python" }    
+    };
 }
 <style type="text/css">
     svg g.axis {
@@ -29,7 +42,12 @@
         <p>This demo takes tag information from <a href="http://data.stackexchange.com/stackoverflow/queries">data.stackexchange.com</a> and projects it below.</p>
     </div>
 </div>
-<div id="chartContainer">
+<div class="row">
+    <div class="col-md-4">
+        @Html.Label("TagChoice", "Tag")
+        @Html.DropDownList("TagChoice", choices)
+        <a id="Export" href="" class="btn btn-default btn-xs">Export</a>
+    </div>
 </div>
 <div class="row">
     <div id="chartContainer">
@@ -40,102 +58,125 @@
 @section Scripts{
     <script type="text/javascript">
         $(document).ready(function () {
-            var url = "/api/tags/";
-            url += encodeURIComponent("c#");
+            $("#TagChoice").on("change", function () {
+                debugger;
+                var tag = $(this).val();
+                var url = "/api/tags?tag=";
+                url += encodeURIComponent(tag);
 
-            $.getJSON(url, function (data) {
-                buildVisualization(data);
+                $.getJSON(url, function (data) {
+                    buildVisualization(data);
+                });
             });
+
+            $("#Export").on("click", function () {
+
+                return false;
+            });
+
+            $("#TagChoice").change();
         });
+        
+        // Overall dimensions of the SVG
+        var height = 500;
+        var width = 900;
 
-        function buildVisualization(dataSet) {
-            // Overall dimensions of the SVG
-            var height = 500;
-            var width = 900;
+        // Padding...
+        var leftPadding = 75;
+        var bottomPadding = 50;
 
-            // Padding...
-            var leftPadding = 75;
-            var bottomPadding = 50;
+        // Actual space for the bars
+        var chartWidth = width - leftPadding;
+        var chartHeight = height - bottomPadding;
 
-            // Actual space for the bars
-            var chartWidth = width - leftPadding;
-            var chartHeight = height - bottomPadding;
+        //Building the scale for the heights
+        var yScale = d3.scale
+                       .linear()
+                       .range([0, chartHeight])
+                       .domain([0, 21000]);
 
-            //Building the scale for the heights
-            var yScale = d3.scale
-                           .linear()
-                           .range([0, chartHeight])
-                           .domain([0, dataSet.Max]);
+        var yAxisScale = d3.scale
+           .linear()
+           .range([chartHeight, 0])
+           .domain([0, 21000]);
 
-            var yAxisScale = d3.scale
-               .linear()
-               .range([chartHeight, 0])
-               .domain([0, dataSet.Max]);
+        //Building the scale for the bar locations
+        var xScale = d3.time.scale()
+           .domain([new Date("5-1-2008"), new Date("2-1-2014")])
+           .range([leftPadding, width - 10]);
 
-            //Building the scale for the bar locations
-            var xScale = d3.time.scale()
-               .domain([new Date(dataSet.MinDate), new Date(dataSet.MaxDate)])
-               .range([leftPadding, width-10]);
+        //Building a Y axis
+        var yAxis = d3.svg.axis()
+                      .scale(yAxisScale)
+                      .orient("left");
 
-            //Building a Y axis
-            var yAxis = d3.svg.axis()
-                          .scale(yAxisScale)
-                          .orient("left");
+        // Building an X Axis
+        var xAxis = d3.svg.axis()
+                        .scale(xScale)
+                        .orient("bottom")
+                        .tickFormat(d3.time.format("%m/%d/%Y"));
 
-            // Building an X Axis
-            var xAxis = d3.svg.axis()
-                            .scale(xScale)
-                            .orient("bottom")
-                            .tickFormat(d3.time.format("%m/%d/%Y"));
+        // Build the overall SVG container
+        var svg = d3.select("#chartContainer")
+                    .append("svg")
+                    .attr("width", width)
+                    .attr("height", height)
+                    .attr("class", "chart");
 
-            // Build the overall SVG container
-            var svg = d3.select("#chartContainer")
-                        .append("svg")
-                        .attr("width", width)
-                        .attr("height", height)
-                        .attr("class", "chart");
-
-            // Adding the Axes
-            svg.append("g")
-               .attr("class", "axis")
-               .attr("transform", "translate(" + leftPadding + ",0)")
-               .call(yAxis)
-              .append("text")
-                .attr("transform", "rotate(-90)")
-                .attr("y", 0)
-                .attr("dy", "-55px")
-                .attr("dx", "-120px")
-                .attr("class", "label")
-                .style("text-anchor", "end")
-                .text("Number of Questions Asked");
+        // Adding the Axes
+        svg.append("g")
+           .attr("class", "axis")
+           .attr("transform", "translate(" + leftPadding + ",0)")
+           .call(yAxis)
+          .append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 0)
+            .attr("dy", "-55px")
+            .attr("dx", "-120px")
+            .attr("class", "label")
+            .style("text-anchor", "end")
+            .text("Number of Questions Asked");
 
 
-            svg.append("g")
-               .attr("class", "axis")
-               .attr("transform", "translate(0," + chartHeight + ")")
-               .call(xAxis)
-               .append("text")
-                .attr("x", 0)
-                .attr("y", 0)
-                .attr("dy", "40px")
-                .attr("dx", "475px")
-                .attr("class", "label")
-                .style("text-anchor", "end")
-                .text("Month Asked");
-           
+        svg.append("g")
+           .attr("class", "axis")
+           .attr("transform", "translate(0," + chartHeight + ")")
+           .call(xAxis)
+           .append("text")
+            .attr("x", 0)
+            .attr("y", 0)
+            .attr("dy", "40px")
+            .attr("dx", "475px")
+            .attr("class", "label")
+            .style("text-anchor", "end")
+            .text("Month Asked");
+
+
+        function buildVisualization(dataSet) {           
             var barWidth = (chartWidth / dataSet.Items.length - 1) - 1;
 
+            var bars = svg.selectAll("rect")
+                          .data(dataSet.Items);
+            
             // Build bars for each item
             // Example "rect" element: <rect x="200" y="400" width="300" height="100" style="" class="" />
-            svg.selectAll("rect")
-               .data(dataSet.Items)
-               .enter()
+            
+            bars.enter()
                .append("rect")
                .attr("x", function (item, i) { return xScale(new Date(item.DateAsked)) })
                .attr("width", function (item) { return barWidth })
                .attr("y", function (item, i) { return chartHeight - yScale(item.Rate) })
                .attr("height", function (item) { return yScale(item.Rate) })
                .attr("fill", "teal");
+
+            bars.exit().remove();
+
+            bars.transition()
+                .attr("x", function (item, i) { return xScale(new Date(item.DateAsked)) })
+                .attr("width", function (item) { return barWidth })
+                .attr("y", function (item, i) { return chartHeight - yScale(item.Rate) })
+                .attr("height", function (item) { return yScale(item.Rate) })
+                .attr("fill", "teal");            
         }
     </script>
 }

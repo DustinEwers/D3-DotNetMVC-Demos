@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Force Layout";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+    <div class="col-md-8">
+        <p>This layout demostrates the Force Layout</p>
+    </div>
+</div>
+<div class="row">
+    <div id="chartContainer">
+    </div>
+</div>
+
+@Scripts.Render("~/bundles/d3")
+@section Scripts{
+    <script type="text/javascript">
+        var dataSet = [];
+        var height = 300;
+        var width = 900;
+        var index = 0;
+
+        // Build the overall SVG container
+        var svg = d3.select("#chartContainer")
+                    .append("svg")
+                    .attr("width", width)
+                    .attr("height", height);
+
+        function bindData() {
+
+        }
+    </script>
+}

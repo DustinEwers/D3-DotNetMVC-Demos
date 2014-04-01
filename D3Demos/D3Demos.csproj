@@ -202,6 +202,7 @@
     <Content Include="Views\TagDemos\BasicBarChart.cshtml" />
     <Content Include="Views\Home\ScalesAndAxes.cshtml" />
     <Content Include="Views\Home\UpdatingData.cshtml" />
+    <Content Include="Views\Home\ForceLayout.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

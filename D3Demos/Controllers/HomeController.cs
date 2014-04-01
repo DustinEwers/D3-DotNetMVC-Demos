@@ -22,5 +22,10 @@ namespace D3Demos.Controllers
         {
             return View();
         }
+
+        public ActionResult ForceLayout()
+        {
+            return View();
+        }
     }
 }

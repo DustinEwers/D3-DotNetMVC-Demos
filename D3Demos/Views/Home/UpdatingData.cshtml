@@ -69,7 +69,6 @@
                     .attr("width", width)
                     .attr("height", height);
 
-        
         $(document).ready(function () {
             $("#radius").on("change", function () {
                 $("#radiusValue").text($(this).val());
@@ -94,36 +93,32 @@
                 dataSet.push(item);
                 if (dataSet.length > 20) {
                     dataSet.shift();
-                    //dataSet.splice(0, 5);
                 }
 
-                BindData();
+                bindData();
 
                 return false;
             });
         });
 
 
-        function BindData() {
+        function bindData() {
             var xScale = d3.scale
                            .ordinal()
                            .domain(d3.range(dataSet.length))
                            .rangeBands([25, width - 25], 0.1);
 
             var prettyColors = [
-                '#FFC757',
-                '#D1E84F',
-                '#63FF9C',
-                '#4FACE8',
-                '#C099FF',
-                '#BEFF17',
-                '#24E815',
-                '#24FF8A',
-                '#0EE8E7',
-                '#59AEFF'];
-
-
-            debugger;
+                '#000033',
+                '#000044',
+                '#000055',
+                '#000066',
+                '#000077',
+                '#000088',
+                '#000099',
+                '#0000AA',
+                '#0000BB',
+                '#0000CC'];
 
             var selection = svg.selectAll("circle")
                                .data(dataSet, function (item) { return item.Index });
@@ -144,8 +139,7 @@
                .attr("cx", function (item, i) { return width })
                .attr("cy", function (item, i) { return height - item.Height })
                .attr("r", function (item) { return item.Radius })
-               .on("click", function (item) { alert(item.Index + " ");})
-               ;
+               .on("click", function (item) { alert(generateMessage(item));});
 
             selection
                .transition()
@@ -153,7 +147,12 @@
                .attr("cx", function (item, i) { return xScale(i) })
                .attr("cy", function (item, i) { return height - item.Height })
                .attr("r", function (item) { return item.Radius })
-               .attr("fill", function (item, i) { return prettyColors[item.Index % (prettyColors.length-1)] });
+               .attr("fill", function (item, i) { return prettyColors[item.Index % (prettyColors.length - 1)] });
+
+            function generateMessage(item) {
+                var msg = "Index: " + item.Index + " Height: " + item.Height + " Radius: " + item.Radius;
+                return msg;
+            }
         }
     </script>
 }
