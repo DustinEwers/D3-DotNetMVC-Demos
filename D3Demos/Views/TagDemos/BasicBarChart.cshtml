@@ -44,7 +44,6 @@
     <div class="col-md-4">
         @Html.Label("TagChoice", "Tag")
         @Html.DropDownList("TagChoice", choices)
-        <a id="Export" href="" class="btn btn-default btn-xs">Export</a>
     </div>
 </div>
 <div class="row">
@@ -64,11 +63,6 @@
                 $.getJSON(url, function (data) {
                     buildVisualization(data);
                 });
-            });
-
-            $("#Export").on("click", function () {
-
-                return false;
             });
 
             $("#TagChoice").change();
@@ -93,14 +87,14 @@
                        .domain([0, 21000]);
 
         var yAxisScale = d3.scale
-           .linear()
-           .range([chartHeight, 0])
-           .domain([0, 21000]);
+                           .linear()
+                           .range([chartHeight, 0])
+                           .domain([0, 21000]);
 
         //Building the scale for the bar locations
         var xScale = d3.time.scale()
-           .domain([new Date("5-1-2008"), new Date("2-1-2014")])
-           .range([leftPadding, width - 10]);
+                       .domain([new Date("5-1-2008"), new Date("2-1-2014")])
+                       .range([leftPadding, width - 10]);
 
         //Building a Y axis
         var yAxis = d3.svg.axis()
@@ -109,9 +103,9 @@
 
         // Building an X Axis
         var xAxis = d3.svg.axis()
-                        .scale(xScale)
-                        .orient("bottom")
-                        .tickFormat(d3.time.format("%m/%d/%Y"));
+                      .scale(xScale)
+                      .orient("bottom")
+                      .tickFormat(d3.time.format("%m/%d/%Y"));
 
         // Build the overall SVG container
         var svg = d3.select("#chartContainer")
