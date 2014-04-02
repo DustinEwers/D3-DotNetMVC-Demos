@@ -31,9 +31,7 @@
         stroke: black;
         shape-rendering: crispEdges;
     }
-
 </style>
-
 
 <h2>@ViewBag.Title</h2>
 
@@ -59,7 +57,6 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $("#TagChoice").on("change", function () {
-                debugger;
                 var tag = $(this).val();
                 var url = "/api/tags?tag=";
                 url += encodeURIComponent(tag);
@@ -78,7 +75,7 @@
         });
         
         // Overall dimensions of the SVG
-        var height = 500;
+        var height = 400;
         var width = 900;
 
         // Padding...
@@ -130,9 +127,8 @@
            .call(yAxis)
           .append("text")
             .attr("transform", "rotate(-90)")
-            .attr("y", 0)
             .attr("dy", "-55px")
-            .attr("dx", "-120px")
+            .attr("dx", "-50px")
             .attr("class", "label")
             .style("text-anchor", "end")
             .text("Number of Questions Asked");
@@ -143,8 +139,6 @@
            .attr("transform", "translate(0," + chartHeight + ")")
            .call(xAxis)
            .append("text")
-            .attr("x", 0)
-            .attr("y", 0)
             .attr("dy", "40px")
             .attr("dx", "475px")
             .attr("class", "label")
@@ -164,8 +158,8 @@
             bars.enter()
                .append("rect")
                .attr("x", function (item, i) { return xScale(new Date(item.DateAsked)) })
-               .attr("width", function (item) { return barWidth })
                .attr("y", function (item, i) { return chartHeight - yScale(item.Rate) })
+               .attr("width", function (item) { return barWidth })
                .attr("height", function (item) { return yScale(item.Rate) })
                .attr("fill", "teal");
 
@@ -173,8 +167,8 @@
 
             bars.transition()
                 .attr("x", function (item, i) { return xScale(new Date(item.DateAsked)) })
-                .attr("width", function (item) { return barWidth })
                 .attr("y", function (item, i) { return chartHeight - yScale(item.Rate) })
+                .attr("width", function (item) { return barWidth })
                 .attr("height", function (item) { return yScale(item.Rate) })
                 .attr("fill", "teal");            
         }
