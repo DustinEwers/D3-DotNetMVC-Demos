@@ -71,8 +71,7 @@
             //Power Axis
             var powAxis = d3.svg.axis()
                           .scale(powScale)
-                          .orient("left");
-
+                          .orient("right");
 
             // Time Axis
             var timeAxis = d3.svg.axis()
@@ -93,7 +92,6 @@
                .call(linearAxis)
                 .append("text")
                 .attr("transform", "rotate(-90)")
-                .attr("y", 6)
                 .attr("dy", "-30px")
                 .attr("dx", "-140px")
                 .attr("class", "label")
@@ -106,13 +104,11 @@
                .call(powAxis)
                .append("text")
                 .attr("transform", "rotate(-90)")
-                .attr("y", 6)
                 .attr("dy", "-30px")
                 .attr("dx", "-140px")
                 .attr("class", "label")
                 .style("text-anchor", "end")
                 .text("Power Axis");
-
 
             svg.append("g")
                .attr("class", "axis")
@@ -120,7 +116,6 @@
                .call(timeAxis)
                .append("text")
                 .attr("transform", "rotate(-90)")
-                .attr("y", 6)
                 .attr("dy", "-75px")
                 .attr("dx", "-140px")
                 .attr("class", "label")

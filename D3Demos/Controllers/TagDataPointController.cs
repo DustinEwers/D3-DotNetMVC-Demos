@@ -24,7 +24,7 @@ namespace D3Demos.Controllers
         [Route("")]
         public List<TagDataPoint> GetAll()
         {
-            return dataPoints.OrderBy(m => String.Format("{0}-{1}-{2}", m.TagName, m.YearAsked, m.MonthAsked.ToString("00"))).ToList();
+            return dataPoints.OrderBy(m => m.TagName).ThenBy(m=> m.DateAsked).ToList();
         }
 
         [HttpGet]

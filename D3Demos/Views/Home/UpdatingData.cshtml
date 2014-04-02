@@ -1,25 +1,6 @@
 ﻿@{
     ViewBag.Title = "Updating Data";
 }
-<style type="text/css">
-    svg g.axis {
-        font-size: .75em;
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    }
-
-        svg g.axis text.label {
-            font-size: 1.75em;
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        }
-
-        svg g.axis path,
-        svg g.axis line {
-            fill: none;
-            stroke: black;
-            shape-rendering: crispEdges;
-        }
-</style>
-
 
 <h2>@ViewBag.Title</h2>
 
@@ -130,7 +111,7 @@
                .attr("cy", function (item, i) { return height })
                .attr("r", function (item) { return 0 })
                .attr("fill", function (item) { return "#000000" })
-               .duration(500)
+               .duration(1000)
                .remove();
 
             selection
@@ -143,7 +124,7 @@
 
             selection
                .transition()
-               .duration(500)
+               .duration(1000)
                .attr("cx", function (item, i) { return xScale(i) })
                .attr("cy", function (item, i) { return height - item.Height })
                .attr("r", function (item) { return item.Radius })
